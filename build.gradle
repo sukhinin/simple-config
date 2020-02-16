@@ -1,11 +1,14 @@
 plugins {
+    id 'maven-publish'
     id 'org.jetbrains.kotlin.jvm' version '1.3.61'
 }
 
 group 'com.github.sukhinin'
 version '1.0-SNAPSHOT'
+description 'Yet another configuration library for Kotlin'
 
 repositories {
+    jcenter()
     mavenCentral()
 }
 
@@ -32,4 +35,35 @@ compileTestKotlin {
 
 test {
     useJUnitPlatform()
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+            artifact(kotlinSourcesJar)
+            pom {
+                name = project.name
+                description = project.description
+                url = 'https://github.com/sukhinin/simple-config'
+                licenses {
+                    license {
+                        name = 'Apache-2.0'
+                        url = 'https://github.com/sukhinin/simple-config/blob/master/LICENSE'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'sukhinin'
+                        name = 'Boris Sukhinin'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:https://github.com/sukhinin/simple-config.git'
+                    developerConnection = 'scm:git:https://github.com/sukhinin/simple-config.git'
+                    url = 'https://github.com/sukhinin/simple-config'
+                }
+            }
+        }
+    }
 }
