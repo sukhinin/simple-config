@@ -8,7 +8,7 @@ class ResolvedConfig(val config: Config) : Config by config {
 
     private class Lookup(val config: Config) : StringLookup {
         override fun lookup(key: String): String? {
-            return lookupConfigKey(key) ?: lookupSystemProperty(key) ?: lookupEnvironmentVariable(key)
+            return lookupSystemProperty(key) ?: lookupEnvironmentVariable(key) ?: lookupConfigKey(key)
         }
 
         private fun lookupSystemProperty(key: String): String? {
