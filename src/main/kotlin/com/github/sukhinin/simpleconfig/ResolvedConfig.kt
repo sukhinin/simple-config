@@ -1,22 +1,20 @@
 package com.github.sukhinin.simpleconfig
 
-import org.apache.commons.text.StringSubstitutor
-import org.apache.commons.text.lookup.StringLookup
-import org.apache.commons.text.lookup.StringLookupFactory
-
 class ResolvedConfig(val config: Config) : Config by config {
 
     private class Lookup(val config: Config) : StringLookup {
         override fun lookup(key: String): String? {
-            return lookupSystemProperty(key) ?: lookupEnvironmentVariable(key) ?: lookupConfigKey(key)
+            return lookupSystemProperty(key)
+                ?: lookupEnvironmentVariable(key)
+                ?: lookupConfigKey(key)
         }
 
         private fun lookupSystemProperty(key: String): String? {
-            return StringLookupFactory.INSTANCE.systemPropertyStringLookup().lookup(key)
+            return System.getProperty(key)
         }
 
         private fun lookupEnvironmentVariable(key: String): String? {
-            return StringLookupFactory.INSTANCE.environmentVariableStringLookup().lookup(key)
+            return System.getenv(key)
         }
 
         private fun lookupConfigKey(key: String): String? {
@@ -25,13 +23,9 @@ class ResolvedConfig(val config: Config) : Config by config {
     }
 
     private val lookup = Lookup(config)
-    private val substitutor = StringSubstitutor(lookup)
-
-    init {
-        substitutor.isEnableSubstitutionInVariables = true
-    }
+    private val resolver = VariableResolver(lookup)
 
     override fun get(key: String): String {
-        return substitutor.replace(config.get(key))
+        return resolver.resolve(config.get(key))
     }
 }
