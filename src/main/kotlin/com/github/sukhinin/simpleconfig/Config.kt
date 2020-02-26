@@ -12,11 +12,15 @@ interface Config {
 
     val isEmpty: Boolean get() = keys.isEmpty()
 
-    fun get(key: String): String
-
     fun contains(key: String) = keys.contains(key)
 
+    fun get(key: String): String
+
     fun getOrDefault(key: String, default: String) = if (contains(key)) get(key) else default
+
+    fun getBoolean(key: String) = get(key).toBoolean()
+
+    fun getBooleanOrDefault(key: String, default: Boolean) = if (contains(key)) getBoolean(key) else default
 
     fun getInteger(key: String) = get(key).toInt()
 
