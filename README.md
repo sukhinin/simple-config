@@ -22,7 +22,7 @@ Requires at least Java 1.8 and Kotlin 1.3.61, should also work with more recent 
 
 ## Setting up dependency
 Releases are published to Bintray jcenter repository. You can also find and download all released 
-artifacts on [library's page](https://bintray.com/sukhinin/maven/simple-config) on Bintray itself.
+artifacts from the [library's page](https://bintray.com/sukhinin/maven/simple-config) on Bintray itself.
 
 ### Gradle
 #### Add jcenter repository
@@ -58,7 +58,7 @@ dependencies {
 ## Using the library
 
 ### Quickstart
-This little snippet shows basic usage of `simple-config`.
+This snippet shows basic usage of `simple-config`.
 ```kotlin
 import com.github.sukhinin.simpleconfig.ConfigLoader
 import com.github.sukhinin.simpleconfig.resolved
@@ -78,7 +78,7 @@ fun main() {
 }
 ```
 
-The configuration is loaded from resource `reference.properties` on the classpath, file `application.properties` 
+It loads configuration from resource `reference.properties` on the system classpath, file `application.properties` 
 in the current working directory of the application, and system properties prefixed with `app.` (prefix will be 
 stripped from configuration key name).
 
@@ -131,9 +131,9 @@ from system properties, environment variables and the same configuration object 
 cache resolved values. Resolution is performed every time a configuration value is read. `resolved()` extension method 
 provides a fluent syntax for creating `ResovedConfig`.
 
-To reference a variable wrap its name with `${...}`, to escape a reference and prevent substitution double the dollar
-sign: `$${...}`. The optional default value is specified after the variable name with a `:-`  separator. Default value 
-can also contain references to other variables.
+Wrap a variable name with `${...}` to reference it. Escape a reference and prevent substitution by doubling the dollar
+sign: `$${...}`. The optional default value can be specified after the variable name with a `:-` separator. Both 
+variable name and default value can contain references to other variables.
 
 Let's take a look at the following snippet:
 ```kotlin
@@ -148,5 +148,6 @@ default value `v1` would have been used instead.
 
 ### Providing custom configuration implementations
 Any class implementing `Config` interface can be used as a configuration object. The library provides 
-`PropertiesConfig` and `MapConfig` that wrap `Properties` and `Map` instances and expose them as a configuration 
-object. Factory methods of `ConfigLoader` class are designed to simplify loading configuration from different sources.
+`PropertiesConfig` and `MapConfig` that wrap `Properties` and `Map<String, String>` instances and expose them 
+as a configuration objects. Factory methods of `ConfigLoader` class are designed to simplify loading configuration 
+from different sources.
