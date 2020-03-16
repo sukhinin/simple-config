@@ -1,4 +1,10 @@
+Yet another simple Kotlin configuration library
 Copyright 2020 Boris Sukhinin
+
+Variable resolution code is loosely based on Apache Commons Text (Apache 2.0)
+* Copyright 2014-2020 The Apache Software Foundation
+* https://github.com/apache/commons-text
+
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
