@@ -34,7 +34,7 @@ repositories {
 #### Import dependency
 ```groovy
 dependencies {
-    implementation 'com.github.sukhinin:simple-config:1.3.0' 
+    implementation "com.github.sukhinin:simple-config:${VERSION}" 
 }
 ```
 
@@ -51,7 +51,7 @@ dependencies {
 <dependency>
     <groupId>com.github.sukhinin</groupId>
     <artifactId>simple-config</artifactId>
-    <version>1.3.0</version>
+    <version>${VERSION}</version>
 </dependency>
 ```
 
