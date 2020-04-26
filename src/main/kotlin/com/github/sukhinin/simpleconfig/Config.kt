@@ -41,4 +41,19 @@ interface Config {
     fun toMap(): Map<String, String> = keys.associateWith { get(it) }
 
     fun toProperties(): Properties = Properties().also { it.putAll(toMap()) }
+
+    fun withFallback(fallback: Config) = FallbackConfig(this, fallback)
+
+    fun scoped(prefix: String) = ScopedConfig(this, prefix)
+
+    fun scopedByLabel() = labels.associateWith { scoped(it) }
+
+    fun resolved() = ResolvedConfig(this)
+
+    fun masked() = MaskedConfig(this)
+
+    fun masked(keywords: Collection<String>) = MaskedConfig(this, keywords)
+
+    fun dump() = keys.sorted().joinToString("\n") { key -> "$key=${get(key)}" }
+
 }
