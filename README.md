@@ -18,7 +18,7 @@ such as [Lihgtbend Config](https://github.com/lightbend/config) or [cfg4j](https
 - Thread-safe
 
 ## Requirements
-Requires at least Java 1.8 and Kotlin 1.3.61, should also work with more recent versions.
+Requires at least Java 1.8 and Kotlin 1.3.72, should also work with more recent versions.
 
 ## Setting up dependency
 Releases are published to Bintray jcenter repository. You can also find and download all released 
@@ -87,15 +87,15 @@ overridden by `application.properties` and by system properties. Finally variabl
 are `resolved()`.
 
 ### Working with configuration objects
-`Config` interface exposes `get()` method that either returns string value for the given key or throws an exception
-when no such key exists. `getOrDefault()` can be used to return the provided default value instead of throwing. 
-There are also a number of typed convenience methods `getXxx()` with their respective `getXxxOrDefault()` counterparts.
+The core `Config` interface that all configuration objects implement is very minimalistic. It exposes `keys` property 
+that returns all keys for config and `get()` method that either returns string value corresponding to a given key 
+or throws `NoSuchElementException` if config does not contain the key. `contains()` extension method allows to check
+if given key is in config and `getOrDefault()` extension method allows to supply a default value to return instead 
+of throwing when key is not in the config. There are also a number of typed `getXxx()` methods with their respective 
+`getXxxOrDefault()` counterparts that allow reading values as boolean, integer, long, double or list.
 
-One can use `keys` property to retrieve a set of all keys and `contains()` method to test if the given key is present
-in configuration. 
-
-`size` property is equal to the number of entries in config, and `isEmpty` is true when config does not contain
-any entries at all.
+Every configuration object can be transformed to a map or properties object with `toMap()` or `toProperties()`
+extension methods respectively.
 
 ### Using scoped configurations
 `ScopedConfig` is a wrapper class that allows a configuration to be scoped to only a subset of keys starting with
