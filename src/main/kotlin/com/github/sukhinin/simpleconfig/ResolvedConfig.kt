@@ -1,6 +1,6 @@
 package com.github.sukhinin.simpleconfig
 
-class ResolvedConfig(val config: Config) : Config by config {
+class ResolvedConfig(val config: Config) : Config {
 
     private class Lookup(val config: Config) : StringLookup {
         override fun lookup(key: String): String? {
@@ -25,7 +25,7 @@ class ResolvedConfig(val config: Config) : Config by config {
     private val lookup = Lookup(config)
     private val resolver = VariableResolver(lookup)
 
-    override fun get(key: String): String {
-        return resolver.resolve(config.get(key))
-    }
+    override val keys = config.keys
+
+    override fun get(key: String) = resolver.resolve(config.get(key))
 }
