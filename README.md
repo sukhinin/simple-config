@@ -1,8 +1,7 @@
 # Yet another simple Kotlin configuration library
 
-[![Build Status](https://travis-ci.com/sukhinin/simple-config.svg?branch=master)](https://travis-ci.com/sukhinin/simple-config)
+![Build status](https://github.com/sukhinin/simple-config/actions/workflows/build.yml/badge.svg)
 [![codebeat badge](https://codebeat.co/badges/359401ff-434b-4ea1-be22-c49fd0662657)](https://codebeat.co/projects/github-com-sukhinin-simple-config-master)
-[ ![Download](https://api.bintray.com/packages/sukhinin/maven/simple-config/images/download.svg) ](https://bintray.com/sukhinin/maven/simple-config/_latestVersion)
 
 Minimalistic Kotlin configuration library designed with simplicity in mind.
 
@@ -21,14 +20,15 @@ such as [Lihgtbend Config](https://github.com/lightbend/config) or [cfg4j](https
 Requires at least Java 1.8 and Kotlin 1.3.72, should also work with more recent versions.
 
 ## Setting up dependency
-Releases are published to Bintray jcenter repository. You can also find and download all released 
-artifacts from the [library's page](https://bintray.com/sukhinin/maven/simple-config) on Bintray itself.
+Releases are published to GitHub packages [repository](https://github.com/sukhinin?tab=packages&repo_name=simple-config).
 
 ### Gradle
-#### Add jcenter repository
+#### Add GitHub packages repository
 ```groovy
-repositories {  
-    jcenter()  
+repositories {
+    maven {
+        url 'https://maven.pkg.github.com/sukhinin'
+    }  
 }
 ```
 #### Import dependency
@@ -39,11 +39,11 @@ dependencies {
 ```
 
 ### Maven
-#### Add jcenter repository
+#### Add GitHub packages repository
 ```xml
 <repository>
-    <id>jcenter</id>
-    <url>https://jcenter.bintray.com</url>
+    <id>github.com/sukhinin</id>
+    <url>https://maven.pkg.github.com/sukhinin</url>
 </repository>
 ```
 #### Import dependency
