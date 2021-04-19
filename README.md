@@ -27,7 +27,7 @@ Releases are published to GitHub packages [repository](https://github.com/sukhin
 ```groovy
 repositories {
     maven {
-        url 'https://maven.pkg.github.com/sukhinin'
+        url 'https://jitpack.io'
     }  
 }
 ```
@@ -42,8 +42,8 @@ dependencies {
 #### Add GitHub packages repository
 ```xml
 <repository>
-    <id>github.com/sukhinin</id>
-    <url>https://maven.pkg.github.com/sukhinin</url>
+    <id>jitpack.io</id>
+    <url>https://jitpack.io</url>
 </repository>
 ```
 #### Import dependency
