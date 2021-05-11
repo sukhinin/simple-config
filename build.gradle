@@ -10,7 +10,7 @@ description 'Yet another configuration library for Kotlin'
 repositories {
     mavenCentral()
     maven {
-        url 'https://maven.pkg.github.com/sukhinin'
+        url 'https://jitpack.io'
     }
 }
 
@@ -39,22 +39,4 @@ test {
 
 jgitver {
     strategy 'MAVEN'
-}
-
-publishing {
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/sukhinin/simple-config")
-            credentials {
-                username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_USERNAME")
-                password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")
-            }
-        }
-    }
-    publications {
-        gpr(MavenPublication) {
-            from(components.java)
-        }
-    }
 }
